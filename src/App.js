@@ -32,7 +32,7 @@ import Loading from './Components/Loading/Loading';
 
 function App() {
 
-  const BASEURL = `https://student-dashboard-be.vercel.app/`
+  const BASEURL = `https://student-dashboard-be.vercel.app/api/user`
 
   const [students, setStudents] = useState(null);
   const [getLoading, setGetLoading] = useState(true);
