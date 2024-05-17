@@ -66,6 +66,7 @@ export default function SideNav() {
             </aside>
         </div>
         <ToastContainer
+            position="bottom-right"
             theme={mode === Mode.Dark ? Mode.Light : Mode.Dark}
         />
     </>
