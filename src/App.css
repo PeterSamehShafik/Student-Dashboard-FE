@@ -1,5 +1,4 @@
-.dark .MuiPagination-root {
-    button {
-      color: #fff !important;
-   }
+
+  .dark .MuiPaginationItem-root {
+    color: #fff !important;
   }
