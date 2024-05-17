@@ -434,6 +434,7 @@ function App() {
   const [currentSearch, setCurrentSearch] = useState('')
   const search = e => {
     setCurrentSearch(e.target.value)
+    setPage(1)
   }
 
 
