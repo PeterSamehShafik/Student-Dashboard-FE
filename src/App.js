@@ -519,7 +519,7 @@ function App() {
               <div className='w-100 flex justify-center my-2 py-2'><Loading /></div>
               :
               !students?.length ?
-                <div className='w-100 flex justify-center mb-2 py-4 border-red'>
+                <div className='w-100 flex justify-center mb-2 py-3 border-red'>
                   <span className='text-3xl text-center '>No Users Found</span>
                 </div>
                 :
@@ -558,11 +558,11 @@ function App() {
                     <tbody >
                       {students.map((student, idx) =>
                         <tr key={student._id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-100 even:dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">
-                          <td className="px-0 ps-2 py-4 text-center">
+                          <td className="px-0 ps-2 py-3 text-center">
                             <input type="checkbox" checked={deleteIds.includes(student._id)}
                               onChange={(e) => handleSelection(e, student)} className="w-5 h-5 rounded accent-cyan-600	" />
                           </td>
-                          <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <th scope="row" className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {student.profilePic?.secure_url ?
                               <Avatar alt={student.firstName} src={student.profilePic?.secure_url} />
                               :
@@ -570,22 +570,22 @@ function App() {
 
                             }
                           </th>
-                          <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          <th scope="row" className="px-6 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {student.firstName} {student.lastName}
                           </th>
-                          <td className="px-6 py-4">
+                          <td className="px-6 py-3">
                             {student.email}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-6 py-3">
                             {student.phone}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-6 py-3">
                             {student._id}
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-6 py-3">
                             {new Date(student.createdAt).toDateString().split(' ').slice(1).join(' ')}
                           </td>
-                          <td className="px-6 py-4 flex">
+                          <td className="px-6 py-3 flex">
                             <div onClick={() => openEditModal(student)} className='edit relative group me-3'>
                               <MdEdit className='text-yellow-500 cursor-pointer hover:text-yellow-700' size={23} />
                               <div className="absolute bottom-full left-1/2 mb-2 hidden w-max px-2 py-1 text-sm text-white bg-gray-800 rounded opacity-0 transform -translate-x-1/2 group-hover:block group-hover:opacity-100 transition-opacity">
