@@ -31,6 +31,9 @@ import Loading from './Components/Loading/Loading';
 
 
 function App() {
+
+  const BASEURL = `https://student-dashboard-be.vercel.app/`
+
   const [students, setStudents] = useState(null);
   const [getLoading, setGetLoading] = useState(true);
 
@@ -178,7 +181,7 @@ function App() {
       setTableLoading(true)
 
       let err;
-      let result = await axios.post(`http://localhost:3001/api/user/add`, formData).catch(function (error) {
+      let result = await axios.post(`${BASEURL}/add`, formData).catch(function (error) {
         if (error.response) {
           err = error.response.data.message
           console.log(error.response);
@@ -235,7 +238,7 @@ function App() {
     formData.append('photo', file);
 
     try {
-      const response = await axios.patch(`http://localhost:3001/api/user/${id}/profilePic`, formData, {
+      const response = await axios.patch(`${BASEURL}/${id}/profilePic`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -302,7 +305,7 @@ function App() {
       setFileError('')
       setTableLoading(true)
       let err;
-      let result = await axios.patch(`http://localhost:3001/api/user/${currentEdit._id}/edit`, formData).catch(function (error) {
+      let result = await axios.patch(`${BASEURL}/${currentEdit._id}/edit`, formData).catch(function (error) {
         if (error.response) {
           err = error.response.data.message
           console.log(error.response);
@@ -354,7 +357,7 @@ function App() {
   const deleteStudent = async () => {
     setTableLoading(true)
     let err;
-    let result = await axios.delete(`http://localhost:3001/api/user/${currentDelete._id}/delete`).catch(function (error) {
+    let result = await axios.delete(`${BASEURL}/${currentDelete._id}/delete`).catch(function (error) {
       if (error.response) {
         err = error.response.data.message
         console.log(error.response);
@@ -399,7 +402,7 @@ function App() {
   const deleteMany = async () => {
     setTableLoading(true)
     let err;
-    let result = await axios.delete(`http://localhost:3001/api/user/delete/many`, { data: { deleteIds } }).catch(function (error) {
+    let result = await axios.delete(`${BASEURL}/delete/many`, { data: { deleteIds } }).catch(function (error) {
       if (error.response) {
         err = error.response.data.message
         console.log(error.response);
@@ -444,7 +447,7 @@ function App() {
       setTableLoading(true)
     }
     let err;
-    let result = await axios.get(`http://localhost:3001/api/user/all?search=${currentSearch}&searchBy=${searchCategory}&page=${page}&sortDate=${sortDate}&sortName=${sortName}`, formData).catch(function (error) {
+    let result = await axios.get(`${BASEURL}/all?search=${currentSearch}&searchBy=${searchCategory}&page=${page}&sortDate=${sortDate}&sortName=${sortName}`, formData).catch(function (error) {
       if (error.response) {
         err = error.response.data.message
         console.log(error.response);
