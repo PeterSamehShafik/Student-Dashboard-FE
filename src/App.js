@@ -22,6 +22,7 @@ import { VscLoading } from "react-icons/vsc";
 import { AiOutlineCheck } from 'react-icons/ai';
 import { LiaUserEditSolid } from "react-icons/lia";
 import { CiSearch } from "react-icons/ci";
+import { CiCircleRemove } from "react-icons/ci";
 
 
 import axios from 'axios';
@@ -84,6 +85,7 @@ function App() {
     setOpenDataModal(false)
     setModalMode(null)
     setCurrentEdit(null)
+    handleRemovePhoto()
   }
 
   //validations
@@ -225,7 +227,11 @@ function App() {
     setFile(selectedFile);
     validateFile(selectedFile)
   };
-
+  const handleRemovePhoto = () => {
+    setFile(null)
+    setUploading(false)
+    setFileError('')
+  }
   const handleUpload = async (id) => {
     if (!validateFile()) {
       return;
@@ -440,7 +446,15 @@ function App() {
 
   //get students
   const [sortName, setSortName] = useState(0)
-  const [sortDate, setSortDate] = useState(0)
+  const [sortDate, setSortDate] = useState(-1)
+  const handleSortDate = () => {
+    setSortDate(sortDate === 1 ? -1 : 1)
+    setSortName(0)
+  }
+  const handleSortName = () => {
+    setSortName(sortName === 1 ? -1 : 1)
+    setSortDate(0)
+  }
   const getStudents = async () => {
     setDeleteIds([])
     setSelectAll(false)
@@ -536,7 +550,7 @@ function App() {
                         </th>
                         <th scope="col" className="px-6 py-3 flex items-center">
                           Name
-                          <FaSort onClick={() => setSortName(sortName === '1' ? '-1' : '1')} className='cursor-pointer ms-3 hover:text-slate-500' size={15} />
+                          <FaSort onClick={handleSortName} className='cursor-pointer ms-3 hover:text-slate-500' size={15} />
                         </th>
                         <th scope="col" className="px-6 py-3">
                           Email
@@ -549,7 +563,7 @@ function App() {
                         </th>
                         <th scope="col" className="px-6 py-3 flex items-center">
                           Date Of Admission
-                          <FaSort onClick={() => setSortDate(sortDate === 0 ? '-1' : '1')} className='cursor-pointer ms-3 hover:text-slate-500' size={15} />
+                          <FaSort onClick={handleSortDate} className='cursor-pointer ms-3 hover:text-slate-500' size={15} />
                         </th>
                         <th scope="col" className="px-6 py-3">
                           Actions
@@ -620,7 +634,7 @@ function App() {
 
           <div className='pagination sm:flex justify-between mt-4'>
             <span>Showing <b>{students?.length}</b> out of <b>{totalStudents}</b> items</span>
-            <Pagination className='mt-5 sm:mt-0' count={pageCount} page={page} color="primary" siblingCount={0} onChange={changePage} />
+            <Pagination className='mt-5 sm:mt-0' count={pageCount} page={page} color="primary" siblingCount={1} onChange={changePage} />
           </div>
 
 
@@ -646,16 +660,27 @@ function App() {
 
               />
               <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="fileInput">{uploading ? 'Uploading...' : 'Choose Photo'}</label>
-              <label
-                htmlFor="fileInput"
-                className="bg-blue-500 text-white py-2 px-4 mt-3 rounded cursor-pointer hover:bg-blue-600"
-                disabled={uploading}
-              >{uploading ? 'Uploading...' : file ? file.name : 'Choose Photo'}</label>
+              <div className='flex items-center mt-2'>
+                <label
+                  htmlFor="fileInput"
+                  className="bg-blue-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-600"
+                  disabled={uploading}
+                >{uploading ? 'Uploading...' : file ? file.name : 'Choose Photo'}</label>
+
+                {file ?
+                  <div onClick={handleRemovePhoto} className="bg-red-500 text-white px-4 py-2 ms-3 rounded cursor-pointer hover:bg-red-600 ">
+                    <CiCircleRemove size={20} />
+                  </div>
+                  : ""}
+              </div>
 
               {fileError === 'done' && <AiOutlineCheck className="absolute right-3 top-10 text-green-500" />}
               {fileError && fileError !== 'done' && <>
                 <p className="text-red-500 text-xs italic mt-3">{fileError}</p>
               </>}
+
+
+
             </div>
 
 
