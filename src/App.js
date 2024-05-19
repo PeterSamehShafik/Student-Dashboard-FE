@@ -548,9 +548,9 @@ function App() {
                         <th scope="col" className="px-6 py-3">
                           Photo
                         </th>
-                        <th scope="col" className="px-6 py-3 flex items-center">
-                          Name
-                          <FaSort onClick={handleSortName} className='cursor-pointer ms-3 hover:text-slate-500' size={15} />
+                        <th scope="col" className="px-6 py-3">
+                          <span>Name</span>
+                          <FaSort onClick={handleSortName} className='inline-block cursor-pointer ms-3 hover:text-slate-500' size={15} />
                         </th>
                         <th scope="col" className="px-6 py-3">
                           Email
@@ -561,9 +561,9 @@ function App() {
                         <th scope="col" className="px-6 py-3">
                           Enroll Number
                         </th>
-                        <th scope="col" className="px-6 py-3 flex items-center">
-                          Date Of Admission
-                          <FaSort onClick={handleSortDate} className='cursor-pointer ms-3 hover:text-slate-500' size={15} />
+                        <th scope="col" className="px-6 py-3">
+                          <span>Date Of Admission</span>
+                          <FaSort onClick={handleSortDate} className='inline-block cursor-pointer ms-3 hover:text-slate-500' size={15} />
                         </th>
                         <th scope="col" className="px-6 py-3">
                           Actions
